@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">money</string>
+    <string name="Transport">Transport</string>
+    <string name="Products">Products</string>
+    <string name="Meals">Meals</string>
+    <string name="Education">Education</string>
+</resources>
