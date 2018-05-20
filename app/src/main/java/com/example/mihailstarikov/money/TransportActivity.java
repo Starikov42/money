@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import static java.lang.Integer.parseInt;
 
 public class TransportActivity extends Activity {
+    static public Integer pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +42,15 @@ public class TransportActivity extends Activity {
         final EditText costOfExpenditure = (EditText) findViewById(R.id.costOfExpenditure);
 
         final ListView bd = (ListView) findViewById(R.id.BD);
-        final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, main.db.getExpenditures());
-//        bd.setAdapter(adapter1);
-//        bd.setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                //return id;
-//            }
-//        });
+        final ArrayAdapter<Expenditure> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, main.db.getExpenditures());
+        bd.setAdapter(adapter1);
+
+        bd.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                pos = position;
+            }
+        });
 
 //        Запись в БД
         Button add = (Button) findViewById(R.id.addSum);
@@ -59,7 +61,6 @@ public class TransportActivity extends Activity {
                 String article = (String) listOfTransport.getSelectedItem();
                 float summ = Float.parseFloat(costOfExpenditure.getText().toString());
                 main.db.insertExpenditure(article, summ, LocalDate.now().toString());
-//                adapter1.notifyDataSetChanged();
                 bd.setAdapter(adapter1);
 
             }
@@ -70,12 +71,9 @@ public class TransportActivity extends Activity {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                adapter1(TransportActivity.this, android.R.layout.simple_list_item_1, main.db.getExpenditures());
                 adapter1.clear();
                 adapter1.addAll(main.db.getExpenditures());
                 adapter1.notifyDataSetChanged();
-//                bd.invalidateViews();
-//                bd.setAdapter(adapter1);
             }
         });
 
@@ -84,7 +82,7 @@ public class TransportActivity extends Activity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                main.db.delete(bd.getId());
+                main.db.delete(main.db.getExpenditures().get(pos).id);
             }
         });
 
