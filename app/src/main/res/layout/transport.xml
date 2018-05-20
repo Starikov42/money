@@ -1,98 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
-        <!--Заголовок раздела-->
-        <TextView
-            android:id="@+id/article"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
-            android:height="0dp"
-            android:layout_weight="20"
-            android:text="Transport"
-            android:textSize="40sp" />
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--Ввод заголовка новой статьи расходов-->
-            <Spinner
-                android:id="@+id/listOfTransport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="50dp"
-                android:minWidth="150dp"
-                android:minHeight="50dp" />
-
-            <!--Ввод суммы новой главы расходов-->
-            <EditText
-                android:id="@+id/costOfExpenditure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="230dp"
-                android:layout_marginTop="50dp"
-                android:width="150dp"
-                android:minHeight="50dp"
-                android:ems="10"
-                android:inputType="numberDecimal" />
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/text_view_info"
+        android:id="@+id/article"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp"
-        android:minHeight="250dp"/>
+        android:gravity="center_horizontal"
+        android:text="Transport"
+        android:textSize="40sp" />
 
-        <!--</LinearLayout>-->
+    <LinearLayout
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/article"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <!--Ввод заголовка новой статьи расходов-->
+        <Spinner
+            android:id="@+id/listOfTransport"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <!--Ввод суммы новой главы расходов-->
+        <EditText
+            android:id="@+id/costOfExpenditure"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/comands"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/addSum"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:text="Add" />
 
-            <!--Добавление статьи расходов-->
-            <Button
-                android:id="@+id/addSum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="450dp"
-                android:layout_weight="1"
-                android:text="Add" />
+        <Button
+            android:id="@+id/showExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show" />
 
-            <!--Печать списка расходов-->
-            <Button
-                android:id="@+id/showExpenses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="450dp"
-                android:layout_weight="1"
-                android:text="Show" />
+        <Button
+            android:id="@+id/clearStatistics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Clear" />
 
-            <!--Очищения списка расходов-->
-            <Button
-                android:id="@+id/clearStatistics"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="450dp"
-                android:layout_weight="1"
-                android:text="Clear" />
+    </LinearLayout>
 
-        </LinearLayout>
+    <!--Печать списка расходов-->
+    <ListView
+        android:id="@+id/BD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comands"
+        android:dividerHeight="2px" >
+    </ListView>
 
 </RelativeLayout>

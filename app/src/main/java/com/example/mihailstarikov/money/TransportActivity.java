@@ -1,12 +1,21 @@
 package com.example.mihailstarikov.money;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import static java.lang.Integer.parseInt;
 
 public class TransportActivity extends Activity {
 
@@ -16,19 +25,42 @@ public class TransportActivity extends Activity {
         setContentView(R.layout.transport);
 
 //        Заголовок новой статьи расходов
-        String[] meansOfTransport = { "Bus", "Trolleybus", "Tram", "Subway", "Taxi", "Companion" };
+        ArrayList<String> meansOfTransport = new ArrayList<String>();
+        meansOfTransport.add("Bus");
+        meansOfTransport.add("Trolleybus");
+        meansOfTransport.add("Tram");
+        meansOfTransport.add("Subway");
+        meansOfTransport.add("Taxi");
+        meansOfTransport.add("Companion");
+
         final Spinner listOfTransport = (Spinner) findViewById(R.id.listOfTransport);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.transport_spinner, meansOfTransport);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.transport_spinner, meansOfTransport);
         listOfTransport.setAdapter(adapter);
 
 //        Стоимость новой статьи расходов
         final EditText costOfExpenditure = (EditText) findViewById(R.id.costOfExpenditure);
 
+        final ListView bd = (ListView) findViewById(R.id.BD);
+        final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, main.db.getExpenditures());
+//        bd.setAdapter(adapter1);
+//        bd.setOnItemClickListener(new OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                //return id;
+//            }
+//        });
+
 //        Запись в БД
         Button add = (Button) findViewById(R.id.addSum);
         add.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
+                String article = (String) listOfTransport.getSelectedItem();
+                float summ = Float.parseFloat(costOfExpenditure.getText().toString());
+                main.db.insertExpenditure(article, summ, LocalDate.now().toString());
+//                adapter1.notifyDataSetChanged();
+                bd.setAdapter(adapter1);
 
             }
         });
@@ -38,7 +70,12 @@ public class TransportActivity extends Activity {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+//                adapter1(TransportActivity.this, android.R.layout.simple_list_item_1, main.db.getExpenditures());
+                adapter1.clear();
+                adapter1.addAll(main.db.getExpenditures());
+                adapter1.notifyDataSetChanged();
+//                bd.invalidateViews();
+//                bd.setAdapter(adapter1);
             }
         });
 
@@ -47,7 +84,7 @@ public class TransportActivity extends Activity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                main.db.delete(bd.getId());
             }
         });
 
