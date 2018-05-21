@@ -55,34 +55,57 @@ public class TransportActivity extends Activity {
 //        Запись в БД
         Button add = (Button) findViewById(R.id.addSum);
         add.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("NewApi")
+//            @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
                 String article = (String) listOfTransport.getSelectedItem();
-                float summ = Float.parseFloat(costOfExpenditure.getText().toString());
-                main.db.insertExpenditure(article, summ, LocalDate.now().toString());
+                try
+                {
+                    float summ = Float.parseFloat(costOfExpenditure.getText().toString());
+                    main.db.insertExpenditure(article, summ, LocalDate.now().toString());
+                }
+                catch (Exception e)
+                {
+                    System.out.println("empty input");
+                }
                 bd.setAdapter(adapter1);
-
-            }
-        });
-
-//        Выгрузка БД
-        Button show = (Button) findViewById(R.id.showExpenses);
-        show.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 adapter1.clear();
                 adapter1.addAll(main.db.getExpenditures());
                 adapter1.notifyDataSetChanged();
+
             }
         });
+
+////        Выгрузка БД
+//        Button show = (Button) findViewById(R.id.showExpenses);
+//        show.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                adapter1.clear();
+//                adapter1.addAll(main.db.getExpenditures());
+//                adapter1.notifyDataSetChanged();
+//            }
+//        });
 
 //        Чистка БД
         Button clear = (Button) findViewById(R.id.clearStatistics);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                main.db.delete(main.db.getExpenditures().get(pos).id);
+
+                System.out.println(pos);
+
+                if (pos != null) {
+                    if (main.db.getExpenditures().size() == pos || main.db.getExpenditures().isEmpty())
+                    {
+                        pos = null;
+                        return;
+                    }
+                    main.db.delete(main.db.getExpenditures().get(pos).id);
+                    adapter1.clear();
+                    adapter1.addAll(main.db.getExpenditures());
+                    adapter1.notifyDataSetChanged();
+                }
             }
         });
 

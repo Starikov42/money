@@ -28,8 +28,8 @@ public class DB {
         long newRowId = db.insert(ExpenditureArticle.Statistics.TABLE_NAME, null, values);
     }
 
-    public ArrayList<String> getExpenditures() {
-
+    public ArrayList<Expenditure> getExpenditures() {
+//        Создадим и откроем для чтения базу данных
         SQLiteDatabase db = expenditureHelper.getReadableDatabase();
 
         // Зададим условие для выборки - список столбцов
@@ -55,15 +55,19 @@ public class DB {
             int sumIndex = cursor.getColumnIndex(ExpenditureArticle.Statistics.COLUMN_SUM);
             int dateIndex = cursor.getColumnIndex(ExpenditureArticle.Statistics.COLUMN_DATE);
 
-            ArrayList<String> listOfExpenditure = new ArrayList<String>();
+            ArrayList<Expenditure> result = new ArrayList<Expenditure>();
 
             while(cursor.moveToNext()) {
-                String expenditure;
-                expenditure = cursor.getString(articleIndex) + " " + cursor.getInt(sumIndex) + " " + cursor.getString(dateIndex);
-                listOfExpenditure.add(expenditure);
+                Expenditure expenditure = new Expenditure();
+                expenditure.id = cursor.getInt(idColumnIndex);
+                expenditure.article = cursor.getString(articleIndex);
+                expenditure.sum = cursor.getInt(sumIndex);
+                expenditure.date = cursor.getString(dateIndex);
+
+                result.add(expenditure);
             }
 
-            return listOfExpenditure;
+            return result;
         }
 
         finally {
@@ -71,54 +75,6 @@ public class DB {
         }
 
     }
-
-//    public ArrayList<Expenditure> getExpenditures() {
-////        Создадим и откроем для чтения базу данных
-//        SQLiteDatabase db = expenditureHelper.getReadableDatabase();
-//
-//        // Зададим условие для выборки - список столбцов
-//        String[] projection = {
-//                ExpenditureArticle.Statistics._ID,
-//                ExpenditureArticle.Statistics.COLUMN_ARTICLE,
-//                ExpenditureArticle.Statistics.COLUMN_SUM,
-//                ExpenditureArticle.Statistics.COLUMN_DATE};
-//
-//        // Делаем запрос
-//        Cursor cursor = db.query(
-//                ExpenditureArticle.Statistics.TABLE_NAME,   // таблица
-//                projection,            // столбцы
-//                null,                  // столбцы для условия WHERE
-//                null,                  // значения для условия WHERE
-//                null,                  // Don't group the rows
-//                null,                  // Don't filter by row groups
-//                null);                   // порядок сортировки
-//
-//        try {
-//            int idColumnIndex = cursor.getColumnIndex(ExpenditureArticle.Statistics._ID);
-//            int articleIndex = cursor.getColumnIndex(ExpenditureArticle.Statistics.COLUMN_ARTICLE);
-//            int sumIndex = cursor.getColumnIndex(ExpenditureArticle.Statistics.COLUMN_SUM);
-//            int dateIndex = cursor.getColumnIndex(ExpenditureArticle.Statistics.COLUMN_DATE);
-//
-//            ArrayList<Expenditure> result = new ArrayList<Expenditure>();
-//
-//            while(cursor.moveToNext()) {
-//                Expenditure expenditure = new Expenditure();
-//                expenditure.id = cursor.getInt(idColumnIndex);
-//                expenditure.article = cursor.getString(articleIndex);
-//                expenditure.sum = cursor.getInt(sumIndex);
-//                expenditure.date = cursor.getString(dateIndex);
-//
-//                result.add(expenditure);
-//            }
-//
-//            return result;
-//        }
-//
-//        finally {
-//            cursor.close();
-//        }
-//
-//    }
 
     public void delete(int id) {
         SQLiteDatabase db = expenditureHelper.getWritableDatabase();

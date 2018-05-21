@@ -30,7 +30,8 @@
             android:id="@+id/costOfExpenditure"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:inputType="numberDecimal"/>
 
     </LinearLayout>
 
@@ -46,21 +47,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Add" />
+            android:text="Write" />
 
-        <Button
-            android:id="@+id/showExpenses"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Show" />
+        <!--<Button-->
+            <!--android:id="@+id/showExpenses"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Update" />-->
 
         <Button
             android:id="@+id/clearStatistics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Clear" />
+            android:text="Delete" />
 
     </LinearLayout>
 
@@ -70,7 +71,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/comands"
-        android:dividerHeight="2px" >
+        android:dividerHeight="2px"
+        android:choiceMode="multipleChoice"
+        android:listSelector="@color/white">
     </ListView>
 
 </RelativeLayout>
