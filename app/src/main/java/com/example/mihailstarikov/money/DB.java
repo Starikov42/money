@@ -8,16 +8,14 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 public class DB {
-
     private ExpenditureHelper expenditureHelper;
 
     public DB(Context context) {
         expenditureHelper = new ExpenditureHelper(context);
     }
 
-//    Заполнение БД
+//Добавление записи в БД
     public void insertExpenditure(String article, Float sum, String date) {
-
         SQLiteDatabase db = expenditureHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -28,8 +26,8 @@ public class DB {
         long newRowId = db.insert(ExpenditureArticle.Statistics.TABLE_NAME, null, values);
     }
 
+//Получение записи из БД
     public ArrayList<Expenditure> getExpenditures() {
-//        Создадим и откроем для чтения базу данных
         SQLiteDatabase db = expenditureHelper.getReadableDatabase();
 
         // Зададим условие для выборки - список столбцов
@@ -76,9 +74,9 @@ public class DB {
 
     }
 
+//Удаление записи из БД
     public void delete(int id) {
         SQLiteDatabase db = expenditureHelper.getWritableDatabase();
-
         db.delete(ExpenditureArticle.Statistics.TABLE_NAME, ExpenditureArticle.Statistics._ID + " = " + id, null);
     }
 

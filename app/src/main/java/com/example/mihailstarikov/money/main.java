@@ -1,15 +1,10 @@
 package com.example.mihailstarikov.money;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 public class main extends Activity {
     public static DB db;
@@ -20,13 +15,14 @@ public class main extends Activity {
         setContentView(R.layout.activity_main);
 
         db = new DB(this);
+        String title = "";
 
         final ImageButton meal = (ImageButton) findViewById(R.id.meal);
         meal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(main.this, MealsActivity.class);
-                startActivity(intent);
+                String title = getResources().getString(R.string.Meals);
+                openDetailScreen(title);
             }
         });
 
@@ -34,8 +30,8 @@ public class main extends Activity {
         transport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(main.this, TransportActivity.class);
-                startActivity(intent);
+                String title = getResources().getString(R.string.Transport);
+                openDetailScreen(title);
             }
         });
 
@@ -43,8 +39,8 @@ public class main extends Activity {
         products.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(main.this, ProductsActivity.class);
-                startActivity(intent);
+                String title = getResources().getString(R.string.Products);
+                openDetailScreen(title);
             }
         });
 
@@ -52,33 +48,17 @@ public class main extends Activity {
         education.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(main.this, EducationActivity.class);
-                startActivity(intent);
+                String title = getResources().getString(R.string.Education);
+                openDetailScreen(title);
             }
         });
 
     }
 
-//    @Override
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        super.onConfigurationChanged(newConfig);
-//
-//        if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-//
-//        }
-//
-//        else if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//
-//        }
-//    }
-//
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//    }
+    private void openDetailScreen(String title) {
+        Intent intent = new Intent(main.this, DetailActivity.class);
+        intent.putExtra("title", title);
+        startActivity(intent);
+    }
+
 }

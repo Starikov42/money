@@ -4,4 +4,71 @@
     <string name="Products">Products</string>
     <string name="Meals">Meals</string>
     <string name="Education">Education</string>
+
+    <string-array name="transport_items_keys">
+        <item>Bus</item>
+        <item>Trolleybus</item>
+        <item>Tram</item>
+        <item>Subway</item>
+        <item>Taxi</item>
+        <item>Companion</item>
+    </string-array>
+
+    <string-array name="transport_items_values">
+        <item>40</item>
+        <item>40</item>
+        <item>40</item>
+        <item>45</item>
+        <item>100</item>
+        <item>40</item>
+    </string-array>
+
+
+
+    <string-array name="products_items_keys">
+        <item>Drinks</item>
+        <item>Meals</item>
+        <item>Clothes</item>
+        <item>Electronics</item>
+        <item>Home</item>
+    </string-array>
+
+    <string-array name="products_items_values">
+        <item>40</item>
+        <item>40</item>
+        <item>40</item>
+        <item>45</item>
+        <item>100</item>
+    </string-array>
+
+
+
+    <string-array name="meals_items_keys">
+        <item>MacDac</item>
+        <item>KFC</item>
+        <item>Caffe</item>
+        <item>SubWay</item>
+    </string-array>
+
+    <string-array name="meals_items_values">
+        <item>40</item>
+        <item>40</item>
+        <item>40</item>
+        <item>45</item>
+    </string-array>
+
+
+
+    <string-array name="education_items_keys">
+        <item>Books</item>
+        <item>Office_Supplies</item>
+        <item>Conferences</item>
+    </string-array>
+
+    <string-array name="education_items_values">
+        <item>40</item>
+        <item>40</item>
+        <item>40</item>
+    </string-array>
+
 </resources>

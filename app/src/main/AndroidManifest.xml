@@ -16,17 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TransportActivity"
-            android:label="@string/Transport" >
-        </activity>
-        <activity android:name=".ProductsActivity"
-            android:label="@string/Products" >
-        </activity>
-        <activity android:name=".MealsActivity"
-            android:label="@string/Meals" >
-        </activity>
-        <activity android:name=".EducationActivity"
-            android:label="@string/Education" >
+        <activity android:name=".DetailActivity"
+            android:label="@string/Meals">
         </activity>
     </application>
 
