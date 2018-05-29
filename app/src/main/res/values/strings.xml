@@ -4,6 +4,7 @@
     <string name="Products">Products</string>
     <string name="Meals">Meals</string>
     <string name="Education">Education</string>
+    <string name="Total">Total</string>
 
     <string-array name="transport_items_keys">
         <item>Bus</item>
@@ -11,7 +12,6 @@
         <item>Tram</item>
         <item>Subway</item>
         <item>Taxi</item>
-        <item>Companion</item>
     </string-array>
 
     <string-array name="transport_items_values">
@@ -20,7 +20,6 @@
         <item>40</item>
         <item>45</item>
         <item>100</item>
-        <item>40</item>
     </string-array>
 
 
@@ -34,11 +33,11 @@
     </string-array>
 
     <string-array name="products_items_values">
-        <item>40</item>
-        <item>40</item>
-        <item>40</item>
-        <item>45</item>
-        <item>100</item>
+        <item>75</item>
+        <item>200</item>
+        <item>500</item>
+        <item>2000</item>
+        <item>15000</item>
     </string-array>
 
 
@@ -51,10 +50,10 @@
     </string-array>
 
     <string-array name="meals_items_values">
-        <item>40</item>
-        <item>40</item>
-        <item>40</item>
-        <item>45</item>
+        <item>280</item>
+        <item>240</item>
+        <item>50</item>
+        <item>380</item>
     </string-array>
 
 
@@ -66,9 +65,9 @@
     </string-array>
 
     <string-array name="education_items_values">
-        <item>40</item>
-        <item>40</item>
-        <item>40</item>
+        <item>300</item>
+        <item>30</item>
+        <item>1000</item>
     </string-array>
 
 </resources>

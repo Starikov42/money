@@ -13,7 +13,6 @@ public final class ExpenditureArticle {
         public final static String COLUMN_ARTICLE = "article";
         public final static String COLUMN_SUM = "sum";
         public final static String COLUMN_DATE = "date";
-
     }
 
 }

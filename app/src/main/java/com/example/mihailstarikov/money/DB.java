@@ -74,6 +74,22 @@ public class DB {
 
     }
 
+    public float getSumByArticle(String article) {
+        SQLiteDatabase db = expenditureHelper.getReadableDatabase();
+
+        String query = "SELECT SUM(" + ExpenditureArticle.Statistics.COLUMN_SUM + ")" + " FROM " + ExpenditureArticle.Statistics.TABLE_NAME + " WHERE " + ExpenditureArticle.Statistics.COLUMN_ARTICLE + " = " + "\"" + article + "\"" + ";";
+
+        Cursor cursorSQL = db.rawQuery(query, null);
+        float sum = 0;
+
+        while (cursorSQL.moveToNext()) {
+            Expenditure expenditure = new Expenditure();
+            sum = cursorSQL.getFloat(0);
+        }
+
+        return sum;
+    }
+
 //Удаление записи из БД
     public void delete(int id) {
         SQLiteDatabase db = expenditureHelper.getWritableDatabase();

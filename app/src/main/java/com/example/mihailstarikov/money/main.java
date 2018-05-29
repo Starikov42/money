@@ -7,17 +7,17 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class main extends Activity {
-    public static DB db;
+    ImageButton meal, transport, products, education;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db = new DB(this);
+        MyCustomApplication.db = new DB(this);
         String title = "";
 
-        final ImageButton meal = (ImageButton) findViewById(R.id.meal);
+        meal = (ImageButton) findViewById(R.id.meal);
         meal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -26,7 +26,7 @@ public class main extends Activity {
             }
         });
 
-        final ImageButton transport = (ImageButton) findViewById(R.id.transport);
+        transport = (ImageButton) findViewById(R.id.transport);
         transport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +35,7 @@ public class main extends Activity {
             }
         });
 
-        final ImageButton products = (ImageButton) findViewById(R.id.products);
+        products = (ImageButton) findViewById(R.id.products);
         products.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +44,7 @@ public class main extends Activity {
             }
         });
 
-        final ImageButton education = (ImageButton) findViewById(R.id.education);
+        education = (ImageButton) findViewById(R.id.education);
         education.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
